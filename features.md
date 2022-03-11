@@ -1,7 +1,7 @@
 mysql> show databases;
-+---------------------+
+
 | Database            |
-+---------------------+
+|:-------------------:|
 | beni                |
 | document            |
 | information_schema  |
@@ -13,10 +13,9 @@ mysql> show databases;
 | sys                 |
 | vimal               |
 | world               |
-+---------------------+
 11 rows in set (0.01 sec)
 
-# create table
+
 mysql> use student_information;
 Database changed
 mysql> show tables;
@@ -190,7 +189,7 @@ mysql> select (name) from students;
 +---------+
 7 rows in set (0.00 sec)
 
-# Update 
+
 mysql> update students set password = "raj@2002" where id=1;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -303,7 +302,7 @@ mysql> select students.name, student_class.class
     -> on student.id=student_class.id
     -> where student_class.class=10;
 ERROR 1054 (42S22): Unknown column 'student.id' in 'on clause'
-# #############################################################################################################
+
 mysql> select students.name, student_class.class
     -> from students
     -> inner join student_class
@@ -350,7 +349,6 @@ mysql> update student_class set class=4 where id=1;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-# Update
 
 mysql> update student_class set class=4 where id=1,5,6;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',5,6' at line 1
@@ -412,7 +410,7 @@ mysql> select*from student_class;
 +----+------------+-------+----------+
 6 rows in set (0.01 sec)
 
-# update
+
 mysql> update students set dob= NULL where id between 3 and 5;
 Query OK, 3 rows affected (0.01 sec)
 Rows matched: 3  Changed: 3  Warnings: 0
