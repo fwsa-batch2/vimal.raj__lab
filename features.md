@@ -16,6 +16,7 @@ mysql> show databases;
 +---------------------+
 11 rows in set (0.01 sec)
 
+# create table
 mysql> use student_information;
 Database changed
 mysql> show tables;
@@ -74,6 +75,7 @@ mysql> create table student_class ( id int primary key auto_increment, student_i
     -> 1 and class <=12), check (status in ('ACTIVE','INACTIVE')) );
 Query OK, 0 rows affected (0.11 sec)
 
+# # # # ###########################################################################################
 mysql> desc students;
 +--------------+--------------+------+-----+-------------------+-------------------+
 | Field        | Type         | Null | Key | Default           | Extra             |
@@ -157,6 +159,7 @@ mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created
 ERROR 1062 (23000): Duplicate entry '6' for key 'students.PRIMARY'
 mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date)values(7,"aswath","aswath@gmail.com",9683717656,"aswath@2003","m","2002-10-10","2022-3-1");
 Query OK, 1 row affected (0.01 sec)
+# ############################################################################################################
 
 mysql> select *from students;
 +----+---------+-------------------+------------+-------------+--------+------------+---------------------+
@@ -171,6 +174,7 @@ mysql> select *from students;
 |  7 | aswath  | aswath@gmail.com  | 9683717656 | aswath@2003 | m      | 2002-10-10 | 2022-03-01 00:00:00 |
 +----+---------+-------------------+------------+-------------+--------+------------+---------------------+
 7 rows in set (0.00 sec)
+# ##########################################################################################################
 
 mysql> select (name) from students;
 +---------+
@@ -186,6 +190,7 @@ mysql> select (name) from students;
 +---------+
 7 rows in set (0.00 sec)
 
+# Update 
 mysql> update students set password = "raj@2002" where id=1;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -298,6 +303,7 @@ mysql> select students.name, student_class.class
     -> on student.id=student_class.id
     -> where student_class.class=10;
 ERROR 1054 (42S22): Unknown column 'student.id' in 'on clause'
+# #############################################################################################################
 mysql> select students.name, student_class.class
     -> from students
     -> inner join student_class
@@ -343,6 +349,8 @@ mysql> select *from student_class;
 mysql> update student_class set class=4 where id=1;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
+
+# Update
 
 mysql> update student_class set class=4 where id=1,5,6;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',5,6' at line 1
@@ -404,10 +412,7 @@ mysql> select*from student_class;
 +----+------------+-------+----------+
 6 rows in set (0.01 sec)
 
-mysql> update student set dob= NULL where id=3 between 5;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
-mysql> update student set dob= NULL where id between 3 and 5;
-ERROR 1146 (42S02): Table 'student_information.student' doesn't exist
+# update
 mysql> update students set dob= NULL where id between 3 and 5;
 Query OK, 3 rows affected (0.01 sec)
 Rows matched: 3  Changed: 3  Warnings: 0
