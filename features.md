@@ -75,7 +75,7 @@ mysql> create table student_class ( id int primary key auto_increment, student_i
     -> 1 and class <=12), check (status in ('ACTIVE','INACTIVE')) );
 Query OK, 0 rows affected (0.11 sec)
 
-# # # # ###########################################################################################
+
 mysql> desc students;
 +--------------+--------------+------+-----+-------------------+-------------------+
 | Field        | Type         | Null | Key | Default           | Extra             |
@@ -159,7 +159,7 @@ mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created
 ERROR 1062 (23000): Duplicate entry '6' for key 'students.PRIMARY'
 mysql> insert into students (id,name,email,mobile_no,password,gender,dob,created_date)values(7,"aswath","aswath@gmail.com",9683717656,"aswath@2003","m","2002-10-10","2022-3-1");
 Query OK, 1 row affected (0.01 sec)
-# ############################################################################################################
+
 
 mysql> select *from students;
 +----+---------+-------------------+------------+-------------+--------+------------+---------------------+
@@ -174,7 +174,7 @@ mysql> select *from students;
 |  7 | aswath  | aswath@gmail.com  | 9683717656 | aswath@2003 | m      | 2002-10-10 | 2022-03-01 00:00:00 |
 +----+---------+-------------------+------------+-------------+--------+------------+---------------------+
 7 rows in set (0.00 sec)
-# ##########################################################################################################
+
 
 mysql> select (name) from students;
 +---------+
