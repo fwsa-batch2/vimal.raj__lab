@@ -4,9 +4,11 @@
 
 
 
-```
+```syntax
 mysql> USE foody;
 Database changed
+```
+```syntax
 mysql>  CREATE TABLE users(id int primary key auto_increment,email varchar(50) UNIQUE NOT NULL,password varchar(20) UNIQUE NOT NULL,Mobile_num bigint UNIQUE NOT NULL);
 Query OK, 0 rows affected (0.04 sec)
 ```
