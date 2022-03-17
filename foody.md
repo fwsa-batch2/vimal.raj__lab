@@ -2,13 +2,16 @@
 
 ### users
 
-```syntax
+
+
+```
 mysql> USE foody;
 Database changed
 mysql>  CREATE TABLE users(id int primary key auto_increment,email varchar(50) UNIQUE NOT NULL,password varchar(20) UNIQUE NOT NULL,Mobile_num bigint UNIQUE NOT NULL);
 Query OK, 0 rows affected (0.04 sec)
 ```
 
+```syntax
 mysql> DESC USERS;
 
 | Field      | Type        | Null | Key | Default | Extra          |
@@ -19,7 +22,9 @@ mysql> DESC USERS;
 | Mobile_num | bigint      | NO   | UNI | NULL    |                |
 
 4 rows in set (0.01 sec)
+```
 
+```syntax
 mysql> INSERT INTO users(id,email,password,mobile_num)values(1,"vimal@gmail.com","vimal@3245","9566302180");
 Query OK, 1 row affected (0.01 sec)
 mysql> INSERT INTO users(id,email,password,mobile_num)values(2,"rohith@gmail.com","rohith@3276","9683864876");
@@ -29,10 +34,13 @@ Query OK, 2 rows affected (0.01 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 mysql>  INSERT INTO users(id,email,password,mobile_num)values(6,"deepak@gmail.com","deepak@5645","9566407865"),(7,"hasan@gmail.com","hasan@2001","7766879845"),(8,"aswath@gmail.com","aswath@2003","7865479876"),(9,"musuraf@gmail.com","musuraf@2000","7658987458");
 Query OK, 4 rows affected (0.01 sec)
-Records: 4  Duplicates: 0  Warnings: 0
+Records: 4  Duplicates: 0  Warnings: 0 
+```
 
+```syntax
 mysql> SELECT *FROM USERS;
-
+```
+```syntax
 | id | email             | password     | Mobile_num |
 |----|-------------------|--------------|------------|  
 |  1 | vimal@gmail.com   | vimal@3245   | 9566302180 |
@@ -46,11 +54,16 @@ mysql> SELECT *FROM USERS;
 |  9 | musuraf@gmail.com | musuraf@2000 | 7658987458 |
 
 9 rows in set (0.01 sec)
-# alter column
+```
+* alter column and date
+
+
+```syntax
 mysql>alter table users add column created_date timestamp not null default current_timestamp;
 Query OK, 0 rows affected (0.04 sec)
 Records: 0  Duplicates: 0  Warnings: 0
-
+```
+```syntax
 mysql> desc users;
 
 | Field        | Type        | Null | Key | Default           | Extra             |
@@ -62,8 +75,11 @@ mysql> desc users;
 | created_date | timestamp   | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
 
 5 rows in set (0.01 sec)
-
+```
+```syntax
 mysql> select *from users;
+```
+```syntax
 
 | id | email             | password     | Mobile_num | created_date        |
 |----|-------------------|--------------|------------|---------------------|
@@ -77,22 +93,27 @@ mysql> select *from users;
 |  9 | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 
 8 rows in set (0.00 sec)
+```
+* update row
+```syntax
 mysql> update users set name="vimal" where id=1;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 mysql> update users set name="rohith" where id=2;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-
 mysql> update users set name="kaushik" where id=3;
 Query OK, 0 rows affected (0.00 sec)
 Rows matched: 0  Changed: 0  Warnings: 0
-
 mysql> update users set name="haiden" where id=4;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
+```
+```syntax
 mysql> insert into users (id,name,email,password,mobile_num,created_date)values(3,"abisha","abi@gmail.com","abisha@2002","9765456787","2022-03-17");
 Query OK, 1 row affected (0.01 sec)
+```
+```syntax
 
 mysql>  update users set name="haiden" where id=5;
 Query OK, 1 row affected (0.01 sec)
@@ -113,8 +134,11 @@ Rows matched: 1  Changed: 1  Warnings: 0
 mysql>  update users set name="musuraf" where id=9;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-
+```
+```syntax
 mysql> select*from users;
+```
+```syntax
 +----+---------+-------------------+--------------+------------+---------------------+
 | id | name    | email             | password     | Mobile_num | created_date        |
 +----+---------+-------------------+--------------+------------+---------------------+
@@ -129,15 +153,14 @@ mysql> select*from users;
 |  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 +----+---------+-------------------+--------------+------------+---------------------+
 9 rows in set (0.00 sec)
+```
 
-mysql> alter table users coumn name where="kaushik" id=4;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'coumn name where="kaushik" id=4' at line 1
-mysql>  update students set name = "kaushik" where id=4;
-ERROR 1146 (42S02): Table 'foody.students' doesn't exist
+```syntax
 mysql>  update users set name = "kaushik" where id=4;
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-
+```
+```syntax
 mysql> select*from users;
 
 | id | name    | email             | password     | Mobile_num | created_date        |
@@ -153,11 +176,14 @@ mysql> select*from users;
 |  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 
 9 rows in set (0.00 sec)
+```
 
 # Hotels
+```syntax
 mysql> CREATE TABLE hotels(id int primary key auto_increment, hotels_name varchar(20) NOT NULL);
 Query OK, 0 rows affected (0.06 sec)
-
+```
+```syntax
 mysql> DESC hotels;
 
 | Field       | Type        | Null | Key | Default | Extra          |
@@ -166,7 +192,8 @@ mysql> DESC hotels;
 | hotels_name | varchar(20) | NO   |     | NULL    |                |
 
 2 rows in set (0.01 sec)
-
+```
+```syntax
 mysql> INSERT INTO hotels(id,hotels_name)values(1,"kaarai"),(2,"kfc"),(3,"dominos"),(4,"pizzahut"),(5,"thalapakatti");
 Query OK, 5 rows affected (0.01 sec)
 Records: 5  Duplicates: 0  Warnings: 0
@@ -174,8 +201,11 @@ Records: 5  Duplicates: 0  Warnings: 0
 mysql> INSERT INTO hotels(id,hotels_name)values(6,"mc donalds"),(7,"banana leaf"),(8,"star"),(9,"border parotta"),(10,"a2b");
 Query OK, 5 rows affected (0.01 sec)
 Records: 5  Duplicates: 0  Warnings: 0
-
+```
+```syntax
 mysql> SELECT *FROM hotels;
+```
+```syntax
 
 | id | hotels_name    |
 |----|----------------|
@@ -191,5 +221,6 @@ mysql> SELECT *FROM hotels;
 | 10 | a2b            |
 
 10 rows in set (0.01 sec)
+```
 
 
