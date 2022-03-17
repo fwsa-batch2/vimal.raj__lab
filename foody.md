@@ -140,10 +140,10 @@ Rows matched: 1  Changed: 1  Warnings: 0
 ```syntax
 mysql> select*from users;
 ```
-```syntax
-+----+---------+-------------------+--------------+------------+---------------------+
+syntax
+
 | id | name    | email             | password     | Mobile_num | created_date        |
-+----+---------+-------------------+--------------+------------+---------------------+
+|:--:|:---------|:-------------------|:--------------|:------------|:---------------------:|
 |  1 | vimal   | vimal@gmail.com   | vimal@3245   | 9566302180 | 2022-03-17 12:23:14 |
 |  2 | rohith  | rohith@gmail.com  | rohith@3276  | 9683864876 | 2022-03-17 12:23:14 |
 |  3 | abisha  | abi@gmail.com     | abisha@2002  | 9765456787 | 2022-03-17 00:00:00 |
@@ -153,9 +153,8 @@ mysql> select*from users;
 |  7 | hasan   | hasan@gmail.com   | hasan@2001   | 7766879845 | 2022-03-17 12:23:14 |
 |  8 | aswath  | aswath@gmail.com  | aswath@2003  | 7865479876 | 2022-03-17 12:23:14 |
 |  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
-+----+---------+-------------------+--------------+------------+---------------------+
+
 9 rows in set (0.00 sec)
-```
 
 ```syntax
 mysql>  update users set name = "kaushik" where id=4;
