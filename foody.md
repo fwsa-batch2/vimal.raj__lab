@@ -13,7 +13,7 @@ mysql>  CREATE TABLE users(id int primary key auto_increment,email varchar(50) U
 Query OK, 0 rows affected (0.04 sec)
 ```
 
-```syntax
+
 mysql> DESC USERS;
 
 | Field      | Type        | Null | Key | Default | Extra          |
@@ -24,7 +24,7 @@ mysql> DESC USERS;
 | Mobile_num | bigint      | NO   | UNI | NULL    |                |
 
 4 rows in set (0.01 sec)
-```
+
 
 ```syntax
 mysql> INSERT INTO users(id,email,password,mobile_num)values(1,"vimal@gmail.com","vimal@3245","9566302180");
@@ -42,7 +42,7 @@ Records: 4  Duplicates: 0  Warnings: 0
 ```syntax
 mysql> SELECT *FROM USERS;
 ```
-```syntax
+
 | id | email             | password     | Mobile_num |
 |----|-------------------|--------------|------------|  
 |  1 | vimal@gmail.com   | vimal@3245   | 9566302180 |
@@ -56,7 +56,7 @@ mysql> SELECT *FROM USERS;
 |  9 | musuraf@gmail.com | musuraf@2000 | 7658987458 |
 
 9 rows in set (0.01 sec)
-```
+
 * alter column and date
 
 
@@ -65,7 +65,7 @@ mysql>alter table users add column created_date timestamp not null default curre
 Query OK, 0 rows affected (0.04 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
-```syntax
+
 mysql> desc users;
 
 | Field        | Type        | Null | Key | Default           | Extra             |
@@ -77,11 +77,11 @@ mysql> desc users;
 | created_date | timestamp   | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
 
 5 rows in set (0.01 sec)
-```
+
 ```syntax
 mysql> select *from users;
 ```
-```syntax
+
 
 | id | email             | password     | Mobile_num | created_date        |
 |----|-------------------|--------------|------------|---------------------|
@@ -95,7 +95,7 @@ mysql> select *from users;
 |  9 | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 
 8 rows in set (0.00 sec)
-```
+
 * update row
 ```syntax
 mysql> update users set name="vimal" where id=1;
@@ -140,7 +140,7 @@ Rows matched: 1  Changed: 1  Warnings: 0
 ```syntax
 mysql> select*from users;
 ```
-syntax
+
 
 | id | name    | email             | password     | Mobile_num | created_date        |
 |:--:|:---------|:-------------------|:--------------|:------------|:---------------------:|
@@ -161,7 +161,7 @@ mysql>  update users set name = "kaushik" where id=4;
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 ```
-```syntax
+
 mysql> select*from users;
 
 | id | name    | email             | password     | Mobile_num | created_date        |
@@ -177,7 +177,6 @@ mysql> select*from users;
 |  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 
 9 rows in set (0.00 sec)
-```
 
 # Hotels
 ```syntax
@@ -186,6 +185,7 @@ Query OK, 0 rows affected (0.06 sec)
 ```
 ```syntax
 mysql> DESC hotels;
+```
 
 | Field       | Type        | Null | Key | Default | Extra          |
 |-------------|-------------|------|-----|---------|----------------|
@@ -193,7 +193,7 @@ mysql> DESC hotels;
 | hotels_name | varchar(20) | NO   |     | NULL    |                |
 
 2 rows in set (0.01 sec)
-```
+
 ```syntax
 mysql> INSERT INTO hotels(id,hotels_name)values(1,"kaarai"),(2,"kfc"),(3,"dominos"),(4,"pizzahut"),(5,"thalapakatti");
 Query OK, 5 rows affected (0.01 sec)
@@ -206,7 +206,7 @@ Records: 5  Duplicates: 0  Warnings: 0
 ```syntax
 mysql> SELECT *FROM hotels;
 ```
-```syntax
+
 
 | id | hotels_name    |
 |----|----------------|
@@ -222,6 +222,6 @@ mysql> SELECT *FROM hotels;
 | 10 | a2b            |
 
 10 rows in set (0.01 sec)
-```
+
 
 
