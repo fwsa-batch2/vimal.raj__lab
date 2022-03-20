@@ -277,4 +277,58 @@ mysql> SELECT *from menu;
 
 8 rows in set (0.00 sec)
 
+# orders
+```syntax
+mysql> CREATE TABLE orders(id int primary key auto_increment,email varchar(50) NOT NULL,restaurants varchar(30) NOT NULL, food_name varchar(30) NOT NULL,quantity int NOT NULL, price decimal NOT NULL,total int NOT NULL);
+Query OK, 0 rows affected (0.10 sec)
+```
+
+```syntax
+mysql> DESC orders;
+```
+
+| Field       | Type          | Null | Key | Default | Extra          |
+|-------------|---------------|------|-----|---------|----------------|
+| id          | int           | NO   | PRI | NULL    | auto_increment |
+| email       | varchar(50)   | NO   |     | NULL    |                |
+| restaurants | varchar(30)   | NO   |     | NULL    |                |
+| food_name   | varchar(30)   | NO   |     | NULL    |                |
+| quantity    | int           | NO   |     | NULL    |                |
+| price       | decimal(10,0) | NO   |     | NULL    |                |
+| total       | int           | NO   |     | NULL    |                |
+
+7 rows in set (0.02 sec)
+```syntax
+mysql> INSERT INTO orders(id,email,restaurants,food_name,quantity,price,total)values(1,"vimal@gmail.com","kfc","crispy chicken","2","200","400");
+Query OK, 1 row affected (0.02 sec)
+```
+```syntax
+mysql> SELECT*from orders;
+```
+
+| id | email           | restaurants | food_name      | quantity | price | total |
+|----|-----------------|-------------|----------------|----------|-------|-------|
+|  1 | vimal@gmail.com | kfc         | crispy chicken |        2 |   200 |   400 |
+
+1 row in set (0.00 sec)
+
+```syntax
+mysql> INSERT INTO orders(id,email,restaurants,food_name,quantity,price,total)values(2,"rohith@gmail.com","pizza hut","beef pizza","1","400","400"),(3,"prasana@gmail.com","star","fried rice","2","120","240"),(4,"kaushik@gmail.com","A2B","dosa","1","120","120"),(5,"haiden@gmail.com","kfc","chicken burger","2","300","600");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> SELECT*FROM orders;
+```
+
+| id | email             | restaurants | food_name      | quantity | price | total |
+|----|-------------------|-------------|----------------|----------|-------|-------|
+|  1 | vimal@gmail.com   | kfc         | crispy chicken |        2 |   200 |   400 |
+|  2 | rohith@gmail.com  | pizza hut   | beef pizza     |        1 |   400 |   400 |
+|  3 | prasana@gmail.com | star        | fried rice     |        2 |   120 |   240 |
+|  4 | kaushik@gmail.com | A2B         | dosa           |        1 |   120 |   120 |
+|  5 | haiden@gmail.com  | kfc         | chicken burger |        2 |   300 |   600 |
+
+5 rows in set (0.00 sec)
+
 
