@@ -331,4 +331,105 @@ mysql> SELECT*FROM orders;
 
 5 rows in set (0.00 sec)
 
+# payment
+
+```syntax
+mysql> CREATE TABLE payment(id int primary key auto_increment,email varchar(30) NOT NULL,bank_name varchar(30) NOT NULL, card_no int NOT NULL,ccv tinyint NOT NULL);
+Query OK, 0 rows affected (0.11 sec)
+```
+```syntax
+mysql> DESC payment;
+```
+
+| Field     | Type        | Null | Key | Default | Extra          |
+|-----------|-------------|------|-----|---------|----------------|
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| email     | varchar(30) | NO   |     | NULL    |                |
+| bank_name | varchar(30) | NO   |     | NULL    |                |
+| card_no   | int         | NO   |     | NULL    |                |
+| ccv       | tinyint     | NO   |     | NULL    |                |
+
+5 rows in set (0.02 sec)
+
+```syntax
+mysql> alter table payment modify card_no BIGINT;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> desc payment;
+```
+
+| Field     | Type        | Null | Key | Default | Extra          |
+|-----------|-------------|------|-----|---------|----------------|
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| email     | varchar(30) | NO   |     | NULL    |                |
+| bank_name | varchar(30) | NO   |     | NULL    |                |
+| card_no   | bigint      | YES  |     | NULL    |                |
+| ccv       | tinyint     | NO   |     | NULL    |                |
+
+5 rows in set (0.02 sec)
+
+```syntax
+mysql> alter table payment modify ccv int;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> INSERT INTO payment(id,email,bank_name,card_no,ccv)values(1,"vimal@gmail.com","iob","6788875678945673","334");
+Query OK, 1 row affected (0.01 sec)
+```
+
+```syntax
+mysql> INSERT INTO payment(id,email,bank_name,card_no,ccv)values(2,"rohith@gmail.com","sbi","6785687658945673","445"),(3,"prasana@gmail.com","axis","6785378545945673","423"),(4,"kaushik@gmail.com","sbi","2347657658945673","235"),(5,"haiden@gmail.com","city union","7865457658945673","484");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> SELECT *FROM payment;
+```
+
+| id | email             | bank_name  | card_no          | ccv  |
+|----|-------------------|------------|------------------|------|
+|  1 | vimal@gmail.com   | iob        | 6788875678945673 |  334 |
+|  2 | rohith@gmail.com  | sbi        | 6785687658945673 |  445 |
+|  3 | prasana@gmail.com | axis       | 6785378545945673 |  423 |
+|  4 | kaushik@gmail.com | sbi        | 2347657658945673 |  235 |
+|  5 | haiden@gmail.com  | city union | 7865457658945673 |  484 |
+
+5 rows in set (0.00 sec)
+
+```syntax
+mysql> CREATE TABLE review(id int primary key auto_increment,name varchar(30) NOT NULL,email varchar(40) NOT NULL,rating int,comments varchar(300));
+Query OK, 0 rows affected (0.06 sec)
+```
+```syntax
+mysql> desc review;
+```
+
+| Field    | Type         | Null | Key | Default | Extra          |
+|----------|--------------|------|-----|---------|----------------|
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(30)  | NO   |     | NULL    |                |
+| email    | varchar(40)  | NO   |     | NULL    |                |
+| rating   | int          | YES  |     | NULL    |                |
+| comments | varchar(300) | YES  |     | NULL    |                |
+
+5 rows in set (0.02 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
