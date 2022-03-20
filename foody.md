@@ -223,5 +223,58 @@ mysql> SELECT *FROM hotels;
 
 10 rows in set (0.01 sec)
 
+# menu
+
+```syntax
+mysql> CREATE TABLE menu(id int primary key auto_increment, restaurants varchar(30) NOT NULL,food_name varchar(30) NOT NULL, catogories varchar(20) NOT NULL, price DECIMAL NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+```
+```syntax
+mysql> SELECT *from menu;
+Empty set (0.00 sec)
+```
+```syntax
+mysql> DESC menu;
+```
+
+| Field       | Type          | Null | Key | Default | Extra          |
+|-------------|---------------|------|-----|---------|----------------|
+| id          | int           | NO   | PRI | NULL    | auto_increment |
+| restaurants | varchar(30)   | NO   |     | NULL    |                |
+| food_name   | varchar(30)   | NO   |     | NULL    |                |
+| catogories  | varchar(20)   | NO   |     | NULL    |                |
+| price       | decimal(10,0) | NO   |     | NULL    |                |
+
+5 rows in set (0.01 sec)
+```syntax
+mysql> insert into menu(id,restaurants,food_name,catogories,price)values(1,"kaarai","chicken biriyani","non-veg","200");
+Query OK, 1 row affected (0.01 sec)
+```
+
+```syntax
+mysql> insert into menu(id,restaurants,food_name,catogories,price)values(2,"kfc","crispy chicken","non-veg","300");
+Query OK, 1 row affected (0.01 sec)
+```
+```syntax
+mysql> insert into menu(id,restaurants,food_name,catogories,price)values(3,"kfc","chicken burger","non-veg","300"),(4,"pizza hut","beef pizza","non-veg","400"),(5,"border parotta","parotta","non-veg","40"),(6,"A2B","dosa","veg","120"),(7,"Thalapakatti","muttoon biriyani","non-veg","600"),(8,"star","fried rice","veg","120");
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> SELECT *from menu;
+```
+
+| id | restaurants    | food_name        | catogories | price |
+|----|----------------|------------------|------------|-------|
+|  1 | kaarai         | chicken biriyani | non-veg    |   200 |
+|  2 | kfc            | crispy chicken   | non-veg    |   300 |
+|  3 | kfc            | chicken burger   | non-veg    |   300 |
+|  4 | pizza hut      | beef pizza       | non-veg    |   400 |
+|  5 | border parotta | parotta          | non-veg    |    40 |
+|  6 | A2B            | dosa             | veg        |   120 |
+|  7 | Thalapakatti   | muttoon biriyani | non-veg    |   600 |
+|  8 | star           | fried rice       | veg        |   120 |
+
+8 rows in set (0.00 sec)
 
 
