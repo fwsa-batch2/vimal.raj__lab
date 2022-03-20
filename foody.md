@@ -370,6 +370,7 @@ mysql> desc payment;
 
 5 rows in set (0.02 sec)
 
+## Modify column
 ```syntax
 mysql> alter table payment modify ccv int;
 Query OK, 0 rows affected (0.08 sec)
@@ -398,6 +399,7 @@ mysql> SELECT *FROM payment;
 |  5 | haiden@gmail.com  | city union | 7865457658945673 |  484 |
 
 5 rows in set (0.00 sec)
+# Review
 
 ```syntax
 mysql> CREATE TABLE review(id int primary key auto_increment,name varchar(30) NOT NULL,email varchar(40) NOT NULL,rating int,comments varchar(300));
