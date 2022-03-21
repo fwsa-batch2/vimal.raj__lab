@@ -419,7 +419,165 @@ mysql> desc review;
 
 5 rows in set (0.02 sec)
 
-mysql>
+# rename column name
+```syntax
+mysql> ALTER TABLE hotels RENAME COLUMN hotels_name TO restaurants;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+# add constrains
+```syntax
+mysql> alter table orders add user_id int NOT NULL;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> select*from orders;
+```
+
+| id | restaurants | food_name      | quantity | price | total | user_id |
+|----|-------------|----------------|----------|-------|-------|---------|
+|  1 | kfc         | crispy chicken |        2 |   200 |   400 |       0 |
+|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |       0 |
+|  3 | star        | fried rice     |        2 |   120 |   240 |       0 |
+|  4 | A2B         | dosa           |        1 |   120 |   120 |       0 |
+|  5 | kfc         | chicken burger |        2 |   300 |   600 |       0 |
+
+5 rows in set (0.00 sec)
+```syntax
+mysql> select *from users;
+```
+
+| id | name    | email             | password     | Mobile_num | created_date        |
+|----|---------|-------------------|--------------|------------|---------------------|
+|  1 | vimal   | vimal@gmail.com   | vimal@3245   | 9566302180 | 2022-03-17 12:23:14 |
+|  2 | rohith  | rohith@gmail.com  | rohith@3276  | 9683864876 | 2022-03-17 12:23:14 |
+|  3 | abisha  | abi@gmail.com     | abisha@2002  | 9765456787 | 2022-03-17 00:00:00 |
+|  4 | kaushik | kaushik@gmail.com | kaushik@5645 | 9845875670 | 2022-03-17 12:23:14 |
+|  5 | haiden  | haiden@gmail.com  | haiden@2002  | 7658678767 | 2022-03-17 12:23:14 |
+|  6 | deepak  | deepak@gmail.com  | deepak@5645  | 9566407865 | 2022-03-17 12:23:14 |
+|  7 | hasan   | hasan@gmail.com   | hasan@2001   | 7766879845 | 2022-03-17 12:23:14 |
+|  8 | aswath  | aswath@gmail.com  | aswath@2003  | 7865479876 | 2022-03-17 12:23:14 |
+|  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
+
+9 rows in set (0.00 sec)
+# drop column
+```syntax
+mysql> ALTER TABLE orders DROP COLUMN user_id;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+### add column
+```syntax
+mysql> alter table orders add column user_id int unique;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+### adding foreign key
+```syntax
+mysql> ALTER TABLE orders add foreign key(user_id) references users(id);
+Query OK, 5 rows affected (0.10 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> ALTER TABLE orders add column food_id int unique;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> ALTER TABLE orders add foreign key(food_id) references menu(id);
+Query OK, 5 rows affected (0.13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> select*from orders;
+```
+
+| id | restaurants | food_name      | quantity | price | total | user_id | food_id |
+|----|-------------|----------------|----------|-------|-------|---------|---------|
+|  1 | kfc         | crispy chicken |        2 |   200 |   400 |    NULL |    NULL |
+|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |    NULL |    NULL |
+|  3 | star        | fried rice     |        2 |   120 |   240 |    NULL |    NULL |
+|  4 | A2B         | dosa           |        1 |   120 |   120 |    NULL |    NULL |
+|  5 | kfc         | chicken burger |        2 |   300 |   600 |    NULL |    NULL |
+
+5 rows in set (0.00 sec)
+
+### inserting value in colums
+```syntax
+mysql> update orders set food_id ="1" where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set food_id =2 where id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set food_id =3 where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set food_id =4 where id=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set food_id =5 where id=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+```syntax
+mysql> select*from orders;
+```
+
+| id | restaurants | food_name      | quantity | price | total | user_id | food_id |
+
+|  1 | kfc         | crispy chicken |        2 |   200 |   400 |    NULL |       1 |
+|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |    NULL |       2 |
+|  3 | star        | fried rice     |        2 |   120 |   240 |    NULL |       3 |
+|  4 | A2B         | dosa           |        1 |   120 |   120 |    NULL |       4 |
+|  5 | kfc         | chicken burger |        2 |   300 |   600 |    NULL |       5 |
+
+5 rows in set (0.00 sec)
+
+```syntax
+mysql> update orders set user_id=1 where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set user_id=2 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set user_id=3 where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set user_id=4 where id=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update orders set user_id=5 where id=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+```syntax
+mysql> select*from review;
+```
+
+| id | name    | rating | comments                |
+|----|---------|--------|-------------------------|
+|  1 | vimal   |      3 | wonderful food          |
+|  2 | rohith  |      4 | nice and wonderful food |
+|  3 | prasana |      4 | nice and wonderful food |
+|  4 | kaushik |      5 | nice and wonderful food |
+|  5 | haiden  |      4 | nice and wonderful food |
+
+5 rows in set (0.01 sec)
+
+mysql>  ALTER TABLE review add foreign key(id) references users(id);
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
 
 
 
