@@ -530,7 +530,7 @@ mysql> select*from orders;
 ```
 
 | id | restaurants | food_name      | quantity | price | total | user_id | food_id |
-
+|----|-------------|----------------|----------|-------|-------|---------|---------|
 |  1 | kfc         | crispy chicken |        2 |   200 |   400 |    NULL |       1 |
 |  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |    NULL |       2 |
 |  3 | star        | fried rice     |        2 |   120 |   240 |    NULL |       3 |
@@ -573,10 +573,11 @@ mysql> select*from review;
 |  5 | haiden  |      4 | nice and wonderful food |
 
 5 rows in set (0.01 sec)
-
+```syntax
 mysql>  ALTER TABLE review add foreign key(id) references users(id);
 Query OK, 5 rows affected (0.08 sec)
 Records: 5  Duplicates: 0  Warnings: 0
+```
 
 
 
