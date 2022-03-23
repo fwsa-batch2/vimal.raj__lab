@@ -279,62 +279,100 @@ mysql> SELECT *from menu;
 
 # orders
 ```syntax
-mysql> CREATE TABLE orders(id int primary key auto_increment,email varchar(50) NOT NULL,restaurants varchar(30) NOT NULL, food_name varchar(30) NOT NULL,quantity int NOT NULL, price decimal NOT NULL,total int NOT NULL);
-Query OK, 0 rows affected (0.10 sec)
-```
-
-```syntax
-mysql> DESC orders;
-```
-
-| Field       | Type          | Null | Key | Default | Extra          |
-|-------------|---------------|------|-----|---------|----------------|
-| id          | int           | NO   | PRI | NULL    | auto_increment |
-| email       | varchar(50)   | NO   |     | NULL    |                |
-| restaurants | varchar(30)   | NO   |     | NULL    |                |
-| food_name   | varchar(30)   | NO   |     | NULL    |                |
-| quantity    | int           | NO   |     | NULL    |                |
-| price       | decimal(10,0) | NO   |     | NULL    |                |
-| total       | int           | NO   |     | NULL    |                |
-
-7 rows in set (0.02 sec)
-```syntax
-mysql> INSERT INTO orders(id,email,restaurants,food_name,quantity,price,total)values(1,"vimal@gmail.com","kfc","crispy chicken","2","200","400");
-Query OK, 1 row affected (0.02 sec)
+mysql> CREATE TABLE ORDERS(id int NOT NULL primary key auto_increment,user_id int NOT NULL, order_date timestamp, foreign key(user_id) references users(id));
+Query OK, 0 rows affected (0.06 sec)
 ```
 ```syntax
-mysql> SELECT*from orders;
+mysql> desc orders;
 ```
 
-| id | email           | restaurants | food_name      | quantity | price | total |
-|----|-----------------|-------------|----------------|----------|-------|-------|
-|  1 | vimal@gmail.com | kfc         | crispy chicken |        2 |   200 |   400 |
+| Field      | Type      | Null | Key | Default | Extra          |
+|------------|-----------|------|-----|---------|----------------|
+| id         | int       | NO   | PRI | NULL    | auto_increment |
+| user_id    | int       | NO   | MUL | NULL    |                |
+| order_date | timestamp | YES  |     | NULL    |                |
+
+3 rows in set (0.01 sec)
+```syntax
+
+mysql> INSERT INTO orders(user_id,order_date)values(1,"2022-03-22");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO orders(user_id,order_date)values(8,"2022-03-22");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO orders(user_id,order_date)values(5,"2022-03-22"),(6,"2022-03-22");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> select*from orders;
+```
+
+| id | user_id | order_date          |
+|----|---------|---------------------|
+|  1 |       1 | 2022-03-22 00:00:00 |
+|  3 |       8 | 2022-03-22 00:00:00 |
+|  4 |       5 | 2022-03-22 00:00:00 |
+|  5 |       6 | 2022-03-22 00:00:00 |
+
+4 rows in set (0.00 sec)
+
+# ordered_items
+```synatx
+mysql> CREATE TABLE ordered_items(order_id int NOT NULL,food_id int NOT NULL,restaurant_id int NOT NULL,quantity int NOT NULL,price int NOT NULL,total int NOT NULL, foreign key(order_id)references orders(id),foreign key(food_id) references menu(id),foreign key(restaurant_id)references hotels(id));
+Query OK, 0 rows affected (0.09 sec)
+```
+```syntax
+mysql> desc ordered_items;
+```
+
+| Field         | Type | Null | Key | Default | Extra |
+|---------------|------|------|-----|---------|-------|
+| order_id      | int  | NO   | MUL | NULL    |       |
+| food_id       | int  | NO   | MUL | NULL    |       |
+| restaurant_id | int  | NO   | MUL | NULL    |       |
+| quantity      | int  | NO   |     | NULL    |       |
+| price         | int  | NO   |     | NULL    |       |
+| total         | int  | NO   |     | NULL    |       |
+
+6 rows in set (0.00 sec)
+```syntax
+mysql> INSERT INTO orders values(2,2,"2022-03-22");
+Query OK, 1 row affected (0.01 sec)
+```
+```syntax
+mysql> select*from orders;
+```syntax
+
+| id | user_id | order_date          |
+|----|---------|---------------------|
+|  1 |       1 | 2022-03-22 00:00:00 |
+|  2 |       2 | 2022-03-22 00:00:00 |
+|  3 |       8 | 2022-03-22 00:00:00 |
+|  4 |       5 | 2022-03-22 00:00:00 |
+|  5 |       6 | 2022-03-22 00:00:00 |
+
+5 rows in set (0.00 sec)
+```synatx
+mysql> INSERT INTO ordered_items values(1,3,4,2,200,400);
+Query OK, 1 row affected (0.01 sec)
+```
+```syntax
+mysql> select*from ordered_items;
+```
+
+| order_id | food_id | restaurant_id | quantity | price | total |
+|----------|---------|---------------|----------|-------|-------|
+|        1 |       3 |             4 |        2 |   200 |   400 |
 
 1 row in set (0.00 sec)
 
-```syntax
-mysql> INSERT INTO orders(id,email,restaurants,food_name,quantity,price,total)values(2,"rohith@gmail.com","pizza hut","beef pizza","1","400","400"),(3,"prasana@gmail.com","star","fried rice","2","120","240"),(4,"kaushik@gmail.com","A2B","dosa","1","120","120"),(5,"haiden@gmail.com","kfc","chicken burger","2","300","600");
-Query OK, 4 rows affected (0.01 sec)
-Records: 4  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> SELECT*FROM orders;
-```
-
-| id | email             | restaurants | food_name      | quantity | price | total |
-|----|-------------------|-------------|----------------|----------|-------|-------|
-|  1 | vimal@gmail.com   | kfc         | crispy chicken |        2 |   200 |   400 |
-|  2 | rohith@gmail.com  | pizza hut   | beef pizza     |        1 |   400 |   400 |
-|  3 | prasana@gmail.com | star        | fried rice     |        2 |   120 |   240 |
-|  4 | kaushik@gmail.com | A2B         | dosa           |        1 |   120 |   120 |
-|  5 | haiden@gmail.com  | kfc         | chicken burger |        2 |   300 |   600 |
-
-5 rows in set (0.00 sec)
 
 # payment
 
 ```syntax
-mysql> CREATE TABLE payment(id int primary key auto_increment,email varchar(30) NOT NULL,bank_name varchar(30) NOT NULL, card_no int NOT NULL,ccv tinyint NOT NULL);
+mysql> CREATE TABLE payment(id int primary key auto_increment,email varchar(30) NOT NULL,bank_name varchar(30) NOT NULL, card_no int NOT NULL,cvv tinyint NOT NULL);
 Query OK, 0 rows affected (0.11 sec)
 ```
 ```syntax
@@ -344,18 +382,13 @@ mysql> DESC payment;
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
 | id        | int         | NO   | PRI | NULL    | auto_increment |
-| email     | varchar(30) | NO   |     | NULL    |                |
 | bank_name | varchar(30) | NO   |     | NULL    |                |
 | card_no   | int         | NO   |     | NULL    |                |
-| ccv       | tinyint     | NO   |     | NULL    |                |
+| cvv       | int         | NO   |     | NULL    |                |
 
 5 rows in set (0.02 sec)
 
-```syntax
-mysql> alter table payment modify card_no BIGINT;
-Query OK, 0 rows affected (0.14 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
+
 ```syntax
 mysql> desc payment;
 ```
@@ -363,61 +396,71 @@ mysql> desc payment;
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
 | id        | int         | NO   | PRI | NULL    | auto_increment |
-| email     | varchar(30) | NO   |     | NULL    |                |
 | bank_name | varchar(30) | NO   |     | NULL    |                |
 | card_no   | bigint      | YES  |     | NULL    |                |
-| ccv       | tinyint     | NO   |     | NULL    |                |
+| cvv       |     int     | NO   |     | NULL    |                |
 
 5 rows in set (0.02 sec)
 
-## Modify column
-```syntax
-mysql> alter table payment modify ccv int;
-Query OK, 0 rows affected (0.08 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> INSERT INTO payment(id,email,bank_name,card_no,ccv)values(1,"vimal@gmail.com","iob","6788875678945673","334");
-Query OK, 1 row affected (0.01 sec)
-```
 
 ```syntax
-mysql> INSERT INTO payment(id,email,bank_name,card_no,ccv)values(2,"rohith@gmail.com","sbi","6785687658945673","445"),(3,"prasana@gmail.com","axis","6785378545945673","423"),(4,"kaushik@gmail.com","sbi","2347657658945673","235"),(5,"haiden@gmail.com","city union","7865457658945673","484");
-Query OK, 4 rows affected (0.01 sec)
-Records: 4  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> SELECT *FROM payment;
+mysql> select*from payment;
 ```
 
-| id | email             | bank_name  | card_no          | ccv  |
-|----|-------------------|------------|------------------|------|
-|  1 | vimal@gmail.com   | iob        | 6788875678945673 |  334 |
-|  2 | rohith@gmail.com  | sbi        | 6785687658945673 |  445 |
-|  3 | prasana@gmail.com | axis       | 6785378545945673 |  423 |
-|  4 | kaushik@gmail.com | sbi        | 2347657658945673 |  235 |
-|  5 | haiden@gmail.com  | city union | 7865457658945673 |  484 |
+| id | bank_name  | card_no          | cvv |
+|----|------------|------------------|-----|
+|  1 | iob        | 6788875678945673 | 334 |
+|  2 | sbi        | 6785687658945673 | 445 |
+|  3 | axis       | 6785378545945673 | 423 |
+|  4 | sbi        | 2347657658945673 | 235 |
+|  5 | city union | 7865457658945673 | 484 |
 
-5 rows in set (0.00 sec)
+5 rows in set (0.01 sec)
 # Review
 
 ```syntax
-mysql> CREATE TABLE review(id int primary key auto_increment,name varchar(30) NOT NULL,email varchar(40) NOT NULL,rating int,comments varchar(300));
-Query OK, 0 rows affected (0.06 sec)
+mysql> CREATE TABLE review(id int NOT NULL,rating int,comments varchar(300) NOT NULL,foreign key (id) references users(id));
+Query OK, 0 rows affected (0.05 sec)
 ```
 ```syntax
 mysql> desc review;
 ```
 
-| Field    | Type         | Null | Key | Default | Extra          |
-|----------|--------------|------|-----|---------|----------------|
-| id       | int          | NO   | PRI | NULL    | auto_increment |
-| name     | varchar(30)  | NO   |     | NULL    |                |
-| email    | varchar(40)  | NO   |     | NULL    |                |
-| rating   | int          | YES  |     | NULL    |                |
-| comments | varchar(300) | YES  |     | NULL    |                |
+| Field    | Type         | Null | Key | Default | Extra |
+|----------|--------------|------|-----|---------|-------|
+| id       | int          | NO   | MUL | NULL    |       |
+| rating   | int          | YES  |     | NULL    |       |
+| comments | varchar(300) | NO   |     | NULL    |       |
 
-5 rows in set (0.02 sec)
+3 rows in set (0.01 sec)
+
+```SYNTAX   
+mysql> INSERT INTO review(id,rating,comments)values(1,"4","wonderful food");
+Query OK, 1 row affected (0.01 sec)
+```
+```syntax
+
+mysql> INSERT INTO review(id,rating,comments)values(2,"4","wonderful food");
+Query OK, 1 row affected (0.01 sec)
+```
+```syntax
+mysql> INSERT INTO review(id,rating,comments)values(3,"4","wonderful food"),(4,"4","wonderful food"),(5,"4","wonderful food");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+```
+```syntax
+mysql> select*from review;
+```
+
+| id | rating | comments       |
+|----|--------|----------------|
+|  1 |      4 | wonderful food |
+|  2 |      4 | wonderful food |
+|  3 |      4 | wonderful food |
+|  4 |      4 | wonderful food |
+|  5 |      4 | wonderful food |
+
+5 rows in set (0.00 sec)
 
 # rename column name
 ```syntax
@@ -425,24 +468,20 @@ mysql> ALTER TABLE hotels RENAME COLUMN hotels_name TO restaurants;
 Query OK, 0 rows affected (0.03 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
-# add constrains
-```syntax
-mysql> alter table orders add user_id int NOT NULL;
-Query OK, 0 rows affected (0.03 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
+
 ```syntax
 mysql> select*from orders;
 ```
 
-| id | restaurants | food_name      | quantity | price | total | user_id |
-|----|-------------|----------------|----------|-------|-------|---------|
-|  1 | kfc         | crispy chicken |        2 |   200 |   400 |       0 |
-|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |       0 |
-|  3 | star        | fried rice     |        2 |   120 |   240 |       0 |
-|  4 | A2B         | dosa           |        1 |   120 |   120 |       0 |
-|  5 | kfc         | chicken burger |        2 |   300 |   600 |       0 |
 
+| id | user_id | order_date          |
+|----|---------|---------------------|
+|  1 |       1 | 2022-03-22 00:00:00 |
+|  2 |       2 | 2022-03-22 00:00:00 |
+|  3 |       8 | 2022-03-22 00:00:00 |
+|  4 |       5 | 2022-03-22 00:00:00 |
+|  5 |       6 | 2022-03-22 00:00:00 |
+|----|---------|---------------------|
 5 rows in set (0.00 sec)
 ```syntax
 mysql> select *from users;
@@ -461,105 +500,7 @@ mysql> select *from users;
 |  9 | musuraf | musuraf@gmail.com | musuraf@2000 | 7658987458 | 2022-03-17 12:23:14 |
 
 9 rows in set (0.00 sec)
-# drop column
-```syntax
-mysql> ALTER TABLE orders DROP COLUMN user_id;
-Query OK, 0 rows affected (0.11 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
-### add column
-```syntax
-mysql> alter table orders add column user_id int unique;
-Query OK, 0 rows affected (0.12 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
-### adding foreign key
-```syntax
-mysql> ALTER TABLE orders add foreign key(user_id) references users(id);
-Query OK, 5 rows affected (0.10 sec)
-Records: 5  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> ALTER TABLE orders add column food_id int unique;
-Query OK, 0 rows affected (0.11 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> ALTER TABLE orders add foreign key(food_id) references menu(id);
-Query OK, 5 rows affected (0.13 sec)
-Records: 5  Duplicates: 0  Warnings: 0
-```
-```syntax
-mysql> select*from orders;
-```
 
-| id | restaurants | food_name      | quantity | price | total | user_id | food_id |
-|----|-------------|----------------|----------|-------|-------|---------|---------|
-|  1 | kfc         | crispy chicken |        2 |   200 |   400 |    NULL |    NULL |
-|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |    NULL |    NULL |
-|  3 | star        | fried rice     |        2 |   120 |   240 |    NULL |    NULL |
-|  4 | A2B         | dosa           |        1 |   120 |   120 |    NULL |    NULL |
-|  5 | kfc         | chicken burger |        2 |   300 |   600 |    NULL |    NULL |
-
-5 rows in set (0.00 sec)
-
-### inserting value in colums
-```syntax
-mysql> update orders set food_id ="1" where id=1;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set food_id =2 where id=2;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set food_id =3 where id=3;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set food_id =4 where id=4;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set food_id =5 where id=5;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-```
-```syntax
-mysql> select*from orders;
-```
-
-| id | restaurants | food_name      | quantity | price | total | user_id | food_id |
-|----|-------------|----------------|----------|-------|-------|---------|---------|
-|  1 | kfc         | crispy chicken |        2 |   200 |   400 |    NULL |       1 |
-|  2 | pizza hut   | beef pizza     |        1 |   400 |   400 |    NULL |       2 |
-|  3 | star        | fried rice     |        2 |   120 |   240 |    NULL |       3 |
-|  4 | A2B         | dosa           |        1 |   120 |   120 |    NULL |       4 |
-|  5 | kfc         | chicken burger |        2 |   300 |   600 |    NULL |       5 |
-
-5 rows in set (0.00 sec)
-
-```syntax
-mysql> update orders set user_id=1 where id=1;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set user_id=2 where id=2;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set user_id=3 where id=3;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set user_id=4 where id=4;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> update orders set user_id=5 where id=5;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-```
 ```syntax
 mysql> select*from review;
 ```
@@ -581,6 +522,13 @@ Records: 5  Duplicates: 0  Warnings: 0
 
 ## EER Model for Foody Database:
 ![alt eer-model-foody](eer_model.png)
+```syntax
+mysql> ALTER TABLE orders modify user_id int NOT NULL;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+
+
 
 
 
