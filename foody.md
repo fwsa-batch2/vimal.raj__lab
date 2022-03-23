@@ -579,6 +579,9 @@ Query OK, 5 rows affected (0.08 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
 
+## EER Model for Foody Database:
+![alt eer-model-foody](eer_model.png)
+
 
 
 
