@@ -208,6 +208,7 @@ mysql> SELECT *FROM hotels;
 ```
 
 
+
 | id | hotels_name    |
 |----|----------------|
 |  1 | kaarai         |
@@ -521,7 +522,7 @@ Records: 5  Duplicates: 0  Warnings: 0
 ```
 
 ## EER Model for Foody Database:
-![alt eer-model-foody](eer_model.png)
+![alt eer-model-foody](erdiagram.png)
 ```syntax
 mysql> ALTER TABLE orders modify user_id int NOT NULL;
 Query OK, 0 rows affected (0.16 sec)
