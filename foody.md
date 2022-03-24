@@ -522,8 +522,11 @@ Records: 5  Duplicates: 0  Warnings: 0
 ```
 
 
-## EER Model for Foody Database:
+## ER Model for Foody Database:
 ![alt er-model-foody](er_model.png)
+
+## ERR Model for Foody Database:
+![alt er-diagram-foody](er_diagram.png)
 
 
 ```syntax
