@@ -609,7 +609,7 @@ mysql> select name from users where id=1;
 
 1 row in set (0.00 sec)
 
-# inner join
+# inner join (users,role,user_rols)
 
 mysql> SELECT *FROM users inner join user_roles on users.id=user_roles.user_id inner join roles on roles.id=user_roles.role_id;
 
