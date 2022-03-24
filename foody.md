@@ -520,13 +520,13 @@ mysql>  ALTER TABLE review add foreign key(id) references users(id);
 Query OK, 5 rows affected (0.08 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
-
-
-
 mysql> ALTER TABLE orders modify user_id int NOT NULL;
 Query OK, 0 rows affected (0.16 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
+
+
+<img width="440" alt="er diagram" src="https://user-images.githubusercontent.com/76813052/159853450-51e9d942-bfe4-4e3a-bb7d-2920bdbb1223.png">
 
 
 
