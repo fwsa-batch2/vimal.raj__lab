@@ -522,8 +522,9 @@ Records: 5  Duplicates: 0  Warnings: 0
 ```
 
 ## EER Model for Foody Database:
-![alt eer-model-foody](er_diagram.png)
+![alt er-model-foody](er_model.png)
 ```syntax
+
 mysql> ALTER TABLE orders modify user_id int NOT NULL;
 Query OK, 0 rows affected (0.16 sec)
 Records: 0  Duplicates: 0  Warnings: 0
