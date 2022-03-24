@@ -527,8 +527,8 @@ mysql> ALTER TABLE orders modify user_id int NOT NULL;
 Query OK, 0 rows affected (0.16 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
-## EER Model for Foody Database:
-<img width="440" alt="er diagram" src="https://user-images.githubusercontent.com/76813052/159823151-3f554018-499c-46a4-8cae-b03bfc759972.png">
+
+
 
 
 
