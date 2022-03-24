@@ -162,8 +162,9 @@ mysql>  update users set name = "kaushik" where id=4;
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 ```
-
+```syntax
 mysql> select*from users;
+```
 
 | id | name    | email             | password     | Mobile_num | created_date        |
 |----|---------|-------------------|--------------|------------|---------------------|
@@ -180,15 +181,18 @@ mysql> select*from users;
 9 rows in set (0.00 sec)
 
 # roles
-
+```syntax
 mysql> CREATE TABLE roles(id int NOT NULL primary key auto_increment,role_name varchar(30) NOT NULL unique);
 Query OK, 0 rows affected (0.05 sec)
-
+```
+```syntax
 mysql> INSERT INTO roles values(1,"admin"),(2,"customer");
 Query OK, 2 rows affected (0.01 sec)
 Records: 2  Duplicates: 0  Warnings: 0
-
+```
+```syntax
 mysql> select*from roles;
+```
 
 | id | role_name |
 |----|-----------|
@@ -198,15 +202,18 @@ mysql> select*from roles;
 2 rows in set (0.00 sec)
 
 # user role
-
+```syntax
 mysql> CREATE TABLE user_roles(id int NOT NULL primary key auto_increment,user_id int NOT NULL,role_id int NOT NULL, foreign key(user_id) references users(id),foreign key(role_id) references roles(id));
 Query OK, 0 rows affected (0.07 sec)
-
+```
+```syntax
 mysql> INSERT INTO user_roles values(1,1,2),(2,2,2),(3,3,2),(4,4,2),(5,5,2),(6,6,2),(7,7,2),(8,8,2),(9,9,2),(10,10,1);
 Query OK, 10 rows affected (0.02 sec)
 Records: 10  Duplicates: 0  Warnings: 0
-
+```
+```syntax
 mysql> select*from user_roles;
+```
 
 | id | user_id | role_id |
 |----|---------|---------|
@@ -610,8 +617,9 @@ mysql> select name from users where id=1;
 1 row in set (0.00 sec)
 
 # inner join (users,role,user_rols)
-
+```syntax
 mysql> SELECT *FROM users inner join user_roles on users.id=user_roles.user_id inner join roles on roles.id=user_roles.role_id;
+```
 
 | id | name     | email                    | password      | Mobile_num | created_date        | id | user_id | role_id | id | role_name |
 |----|----------|--------------------------|---------------|------------|---------------------|----|---------|---------|----|-----------|
