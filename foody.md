@@ -96,7 +96,8 @@ mysql> select *from users;
 
 8 rows in set (0.00 sec)
 
-* update row
+# update row
+
 ```syntax
 mysql> update users set name="vimal" where id=1;
 Query OK, 1 row affected (0.01 sec)
@@ -534,6 +535,34 @@ mysql> ALTER TABLE orders modify user_id int NOT NULL;
 Query OK, 0 rows affected (0.16 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
+```syntax
+mysql> select name from users;
+```
+
+| name    |
+|---------|
+| vimal   |
+| rohith  |
+| abisha  |
+| kaushik |
+| haiden  |
+| deepak  |
+| hasan   |
+| aswath  |
+| musuraf |
+
+9 rows in set (0.00 sec)
+
+
+```syntax
+mysql> select name from users where id=1;
+```
+
+| name  |
+|-------|
+| vimal |
+
+1 row in set (0.00 sec)
 
 
 

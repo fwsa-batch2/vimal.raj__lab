@@ -454,14 +454,15 @@ mysql> select *from student_class where status ="ACTIVE";
 4 rows in set (0.00 sec)
 
 mysql> select count(*),class from student_class where status ="ACTIVE" group by class;
-+----------+-------+
+
 | count(*) | class |
-+----------+-------+
+|----------|-------|
 |        2 |     4 |
 |        1 |    11 |
 |        1 |    12 |
-+----------+-------+
+
 3 rows in set (0.01 sec)
+```syntax
 
 mysql> update student_class set class=5 where id=3;
 Query OK, 1 row affected (0.01 sec)
@@ -470,18 +471,19 @@ Rows matched: 1  Changed: 1  Warnings: 0
 mysql> update student_class set class=5 where id=4;
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-
+```
+```syntax
 mysql> select *from student_class;
-+----+------------+-------+----------+
+```
 | id | student_id | class | status   |
-+----+------------+-------+----------+
+|----|------------|-------|----------|
 |  1 |          1 |     4 | ACTIVE   |
 |  2 |          2 |    11 | ACTIVE   |
 |  3 |          3 |     5 | INACTIVE |
 |  4 |          4 |     5 | ACTIVE   |
 |  5 |          5 |     4 | ACTIVE   |
 |  6 |          6 |     4 | INACTIVE |
-+----+------------+-------+----------+
+
 6 rows in set (0.00 sec)
 
 
