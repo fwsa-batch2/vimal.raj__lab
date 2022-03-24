@@ -179,6 +179,51 @@ mysql> select*from users;
 
 9 rows in set (0.00 sec)
 
+# roles
+
+mysql> CREATE TABLE roles(id int NOT NULL primary key auto_increment,role_name varchar(30) NOT NULL unique);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO roles values(1,"admin"),(2,"customer");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from roles;
+
+| id | role_name |
+|----|-----------|
+|  1 | admin     |
+|  2 | customer  |
+
+2 rows in set (0.00 sec)
+
+# user role
+
+mysql> CREATE TABLE user_roles(id int NOT NULL primary key auto_increment,user_id int NOT NULL,role_id int NOT NULL, foreign key(user_id) references users(id),foreign key(role_id) references roles(id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO user_roles values(1,1,2),(2,2,2),(3,3,2),(4,4,2),(5,5,2),(6,6,2),(7,7,2),(8,8,2),(9,9,2),(10,10,1);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select*from user_roles;
+
+| id | user_id | role_id |
+|----|---------|---------|
+|  1 |       1 |       2 |
+|  2 |       2 |       2 |
+|  3 |       3 |       2 |
+|  4 |       4 |       2 |
+|  5 |       5 |       2 |
+|  6 |       6 |       2 |
+|  7 |       7 |       2 |
+|  8 |       8 |       2 |
+|  9 |       9 |       2 |
+| 10 |      10 |       1 |
+
+10 rows in set (0.00 sec)
+
+
 # Hotels
 ```syntax
 mysql> CREATE TABLE hotels(id int primary key auto_increment, hotels_name varchar(20) NOT NULL);
@@ -563,6 +608,25 @@ mysql> select name from users where id=1;
 | vimal |
 
 1 row in set (0.00 sec)
+
+# inner join
+
+mysql> SELECT *FROM users inner join user_roles on users.id=user_roles.user_id inner join roles on roles.id=user_roles.role_id;
+
+| id | name     | email                    | password      | Mobile_num | created_date        | id | user_id | role_id | id | role_name |
+|----|----------|--------------------------|---------------|------------|---------------------|----|---------|---------|----|-----------|
+| 10 | vimalraj | vimalraj.admin@gmail.com | vimalraj@2002 | 9865745645 | 2022-03-17 00:00:00 | 10 |      10 |       1 |  1 | admin     |
+|  1 | vimal    | vimal@gmail.com          | vimal@3245    | 9566302180 | 2022-03-17 12:23:14 |  1 |       1 |       2 |  2 | customer  |
+|  2 | rohith   | rohith@gmail.com         | rohith@3276   | 9683864876 | 2022-03-17 12:23:14 |  2 |       2 |       2 |  2 | customer  |
+|  3 | abisha   | abi@gmail.com            | abisha@2002   | 9765456787 | 2022-03-17 00:00:00 |  3 |       3 |       2 |  2 | customer  |
+|  4 | kaushik  | kaushik@gmail.com        | kaushik@5645  | 9845875670 | 2022-03-17 12:23:14 |  4 |       4 |       2 |  2 | customer  |
+|  5 | haiden   | haiden@gmail.com         | haiden@2002   | 7658678767 | 2022-03-17 12:23:14 |  5 |       5 |       2 |  2 | customer  |
+|  6 | deepak   | deepak@gmail.com         | deepak@5645   | 9566407865 | 2022-03-17 12:23:14 |  6 |       6 |       2 |  2 | customer  |
+|  7 | hasan    | hasan@gmail.com          | hasan@2001    | 7766879845 | 2022-03-17 12:23:14 |  7 |       7 |       2 |  2 | customer  |
+|  8 | aswath   | aswath@gmail.com         | aswath@2003   | 7865479876 | 2022-03-17 12:23:14 |  8 |       8 |       2 |  2 | customer  |
+|  9 | musuraf  | musuraf@gmail.com        | musuraf@2000  | 7658987458 | 2022-03-17 12:23:14 |  9 |       9 |       2 |  2 | customer  |
+
+10 rows in set (0.01 sec)
 
 
 
