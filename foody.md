@@ -576,10 +576,10 @@ Records: 5  Duplicates: 0  Warnings: 0
 
 
 ## ER Model for Foody Database:
-![alt er-model-foody](er_model.png)
+![alt er-model-foody](er_modell.png)
 
 ## ERR Model for Foody Database:
-![alt er-diagram-foody](er_diagram.png)
+![alt er-diagram-foody](err_model.png)
 
 
 ```syntax
